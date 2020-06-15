@@ -28,21 +28,27 @@ import { NgbAlert, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { CategoryUpdateComponent } from './category-update/category-update.component';
 import { AngularYandexMapsModule } from 'angular8-yandex-maps';
+import { DepartmentUpdateComponent } from './department-update/department-update.component';
+import { UserTypeUpdateComponent } from './userType-update/userType-update.component';
+import { UserUpdateComponent } from './user-update/user-update.component';
 
 @NgModule({
 	declarations: [
-		MyPageComponent, 
-		UserAddComponent, 
-		CategoryAddComponent, 
-		DepartmentAddComponent, 
-		UserListComponent, 
-		CategoryListComponent, 
-		DepartmentListComponent, 
-		ViewComplaintComponent, 
+		MyPageComponent,
+		UserAddComponent,
+		CategoryAddComponent,
+		DepartmentAddComponent,
+		UserListComponent,
+		CategoryListComponent,
+		DepartmentListComponent,
+		ViewComplaintComponent,
 		ComplaintListComponent,
 		UserTypeListComponent,
 		UserTypeAddComponent,
-		CategoryUpdateComponent],
+		CategoryUpdateComponent,
+		DepartmentUpdateComponent,
+		UserTypeUpdateComponent,
+		UserUpdateComponent],
 	exports: [],
 	imports: [
 		CommonModule,
@@ -61,7 +67,7 @@ import { AngularYandexMapsModule } from 'angular8-yandex-maps';
 		MatCheckboxModule,
 		MatFormFieldModule,
 		MatSlideToggleModule,
-		MatButtonModule,		
+		MatButtonModule,
 		MatTableModule,
 		MatPaginatorModule,
 		MatSelectModule,

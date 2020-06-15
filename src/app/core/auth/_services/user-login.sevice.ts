@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from "rxjs/Rx";
+import { Observable, BehaviorSubject } from "rxjs/Rx";
 import { map } from 'rxjs/operators';
 import { LoginUser } from '../_models/login-user.model';
 import { LOGIN_PATH } from '../_models/path.model';
@@ -14,15 +14,13 @@ export class UserLoginService {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
     'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
-}
-requestOptions = {
+  }
+  requestOptions = {
     headers: new HttpHeaders(this.headerDict),
-};
-  constructor(private http: HttpClient) {
-   }
-
+  };
+  constructor(private http: HttpClient) { }
   login(login: LoginUser): Observable<any> {
-    return this.http.post(LOGIN_PATH ,JSON.stringify(login), this.requestOptions).pipe(map(
+    return this.http.post(LOGIN_PATH, JSON.stringify(login), this.requestOptions).pipe(map(
       res => {
         if (res) {
           return res;
@@ -32,7 +30,7 @@ requestOptions = {
       }
     ));
   }
-  getToken(){
+  getToken() {
 
   }
 }

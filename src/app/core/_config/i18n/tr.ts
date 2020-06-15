@@ -20,7 +20,7 @@ export const locale = {
 				SUBMIT_BUTTON: 'Submit',
 				NO_ACCOUNT: 'Don\'t have an account?',
 				SIGNUP_BUTTON: 'Sign Up',
-				FORGOT_BUTTON: 'Forgot Password',
+				FORGOT_BUTTON: 'Şifremi unuttum?',
 				BACK_BUTTON: 'Back',
 				PRIVACY: 'Privacy',
 				LEGAL: 'Legal',
@@ -28,7 +28,7 @@ export const locale = {
 			},
 			LOGIN: {
 				TITLE: 'Login Account',
-				BUTTON: 'Sign In',
+				BUTTON: 'Giriş',
 			},
 			FORGOT: {
 				TITLE: 'Forgotten Password?',
@@ -41,9 +41,9 @@ export const locale = {
 				SUCCESS: 'Your account has been successfuly registered.'
 			},
 			INPUT: {
-				EMAIL: 'Email',
+				EMAIL: 'TC',
 				FULLNAME: 'Fullname',
-				PASSWORD: 'Password',
+				PASSWORD: 'Şifre',
 				CONFIRM_PASSWORD: 'Confirm Password',
 				USERNAME: 'Username'
 			},

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormGroupDirective } from '@angular/forms';
 import { Lightbox } from 'ngx-lightbox';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ComplaintService } from '../../../core/auth/_services/complaint.service';
 import { ComplaintGalleries } from '../../../core/model/complaint-galleries.models';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -32,7 +32,8 @@ export class ViewComplaintComponent implements OnInit {
     private route: ActivatedRoute,
     private complaintService: ComplaintService,
     private complaintStatusSevice:ComplaintStatusService,
-    private _sanitizer: DomSanitizer) { }
+    private _sanitizer: DomSanitizer,
+    private router:Router) { }
 
   ngOnInit() {
     const id = +this.route.snapshot.paramMap.get('id'); 
@@ -56,7 +57,7 @@ export class ViewComplaintComponent implements OnInit {
       this.formValidation.setValue({
         complaintUserName: this.complaint.userDto.name + " " +this.complaint.userDto.surname,
         complaintDescription: this.complaint.description,
-        statusSelect: this.complaint.userDto.userTypeDto,
+        statusSelect: this.complaint.complaintStatusDto,
       });
     });
   }
@@ -69,7 +70,7 @@ export class ViewComplaintComponent implements OnInit {
   setImage(complainGalery: ComplaintGalleries[]) {
     for (let i = 0; i < complainGalery.length; i++) {
       const src = this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' + complainGalery[i].imageUrl);
-      const caption = 'Selam';
+      const caption = 'Fotoğraf ' + (i+1).toString();
       const thumb = this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' + complainGalery[i].imageUrl);
       const album = {
         src: src,
@@ -84,6 +85,29 @@ export class ViewComplaintComponent implements OnInit {
   close(): void {
     // close lightbox programmatically
     this._lightbox.close();
+  }
+  
+  submit(formDirective: FormGroupDirective) {
+    this.submitControl = true;
+    if (this.formValidation.status == "VALID") {
+      this.complaint.complaintStatusDto=this.formValidation.value.statusSelect;
+      this.complaint.complaintGalleries=null;
+      this.complaintService.save(this.complaint).subscribe(res => {
+        if (res) {
+          this.alertStatus=true;
+          this.alertMessage="Başarılı Bir Şekilde Tamamlandı."
+          this.alertType="success";
+          formDirective.resetForm();
+          setTimeout(() => this.router.navigateByUrl("/complaint-list"), 1000);
+          setTimeout(()=>this.submitControl = false, 1000);
+          setTimeout(()=>this.alertStatus = false, 1000);
+        }
+        else {
+          this.alertMessage="Kaydedilirken Hata Oluştu."
+          this.alertType="danger";
+        }
+      });
+    }
   }
 
 }

@@ -1,16 +1,11 @@
-<!--begin::Head-->
-<div class="kt-login__head">
-	<span class="kt-login__signup-label">Don't have an account yet?</span>&nbsp;&nbsp;
-	<a href="javascript:;" routerLink="/auth/register" class="kt-link kt-login__signup-link">{{ 'AUTH.GENERAL.SIGNUP_BUTTON' | translate }}</a>
-</div>
-<!--end::Head-->
+
 
 <!--begin::Body-->
 <div class="kt-login__body">
 	<!--begin::Signin-->
 	<div class="kt-login__form">
 		<div class="kt-login__title">
-			<h3>Sign In</h3>
+			<h3>GİRİŞ</h3>
 		</div>
 
 		<kt-auth-notice></kt-auth-notice>
@@ -52,7 +47,7 @@
 			</div>
 			<!--begin::Action-->
 			<div class="kt-login__actions">
-				<a href="javascript:;" routerLink="/auth/forgot-password" class="kt-link kt-login__link-forgot">
+				<a href="javascript:;" class="kt-link kt-login__link-forgot">
 					{{ 'AUTH.GENERAL.FORGOT_BUTTON' | translate }}
 				</a>
 				<button (click)="submit()" [ngClass]="{'kt-spinner kt-spinner--right kt-spinner--md kt-spinner--light': loading}" id="kt_login_signin_submit" class="btn btn-primary btn-elevate kt-login__btn-primary">{{ 'AUTH.LOGIN.BUTTON' | translate }}</button>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormGroupDirective } from '@angular/forms';
 import { Category } from '../../../core/model/category.models';
 import { CategoryService } from '../../../core/auth/_services/category.service';
 import { Department } from '../../../core/model/department.models';
@@ -32,7 +32,7 @@ export class CategoryAddComponent implements OnInit {
     this.departments=res;
   });
   }
-  submit() {
+  submit(formDirective: FormGroupDirective) {
     this.submitControl = true;
     if (this.formValidation.status == "VALID") {
       this.category = {
@@ -47,8 +47,8 @@ export class CategoryAddComponent implements OnInit {
           this.alertMessage="Başarılı Bir Şekilde Tamamlandı."
           this.alertType="success";
           this.alertStatus=true;
+          formDirective.resetForm();
           setTimeout(()=>this.submitControl = false, 1000);
-          setTimeout(()=>this.formValidation.reset(), 1000);
           setTimeout(()=>this.alertStatus = false, 1000);
         }
         else {

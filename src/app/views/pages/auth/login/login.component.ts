@@ -15,7 +15,7 @@ import { AuthNoticeService, AuthService, Login, isLoggedIn } from '../../../../c
 import { UserLoginService } from '../../../../core/auth/_services/user-login.sevice';
 import { LoginUser } from '../../../../core/auth/_models/login-user.model';
 import { CategoryService } from '../../../../core/auth/_services/category.service';
-import { HeaderService } from '../../../../core/auth/_models/header.sevice';
+import { HeaderService } from '../../../../core/auth/_services/header.sevice';
 /**../../../../core/auth/_models/header.sevice
  * ! Just example => Should be removed in development
  */
@@ -102,9 +102,9 @@ export class LoginComponent implements OnInit, OnDestroy {
 	initLoginForm() {
 		// demo message to show
 		if (!this.authNoticeService.onNoticeChanged$.getValue()) {
-			const initialNotice = `Use account
-			<strong>${DEMO_PARAMS.EMAIL}</strong> and password
-			<strong>${DEMO_PARAMS.PASSWORD}</strong> to continue.`;
+			const initialNotice = `Deneme hesabı tc
+			<strong>${DEMO_PARAMS.EMAIL}</strong> , şifre
+			<strong>${DEMO_PARAMS.PASSWORD}</strong> ile giriş yapın.`;
 			this.authNoticeService.setNotice(initialNotice, 'info');
 		}
 
@@ -148,8 +148,6 @@ export class LoginComponent implements OnInit, OnDestroy {
 			.login(authData)
 			.pipe(
 				tap(user => {
-					console.log(user);
-					
 					if (user) {
 						this.store.dispatch(new Login({authToken: user.token}));	
 						this.headerService.setToken.next(user.token);

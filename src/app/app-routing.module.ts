@@ -18,6 +18,9 @@ import { ComplaintListComponent } from './views/pages/complaint-list/complaint-l
 import { UserTypeListComponent } from './views/pages/userType-list/userType-list.component';
 import { UserTypeAddComponent } from './views/pages/userType-add/userType-add.component';
 import { CategoryUpdateComponent } from './views/pages/category-update/category-update.component';
+import { DepartmentUpdateComponent } from './views/pages/department-update/department-update.component';
+import { UserTypeUpdateComponent } from './views/pages/userType-update/userType-update.component';
+import { UserUpdateComponent } from './views/pages/user-update/user-update.component';
 
 const routes: Routes = [
 	{path: 'auth', loadChildren: () => import('../app/views/pages/auth/auth.module').then(m => m.AuthModule)},
@@ -34,6 +37,9 @@ const routes: Routes = [
 				path: 'user-add', component: UserAddComponent 
 			},
 			{
+				path: 'user-update/:id', component: UserUpdateComponent 
+			},
+			{
 				path: 'category-add', component: CategoryAddComponent 
 			},
 			{
@@ -41,6 +47,9 @@ const routes: Routes = [
 			},
 			{
 				path: 'department-add', component: DepartmentAddComponent 
+			},
+			{
+				path: 'department-update/:id', component: DepartmentUpdateComponent 
 			},
 			{
 				path: 'user-list', component: UserListComponent 
@@ -62,6 +71,9 @@ const routes: Routes = [
 			},
 			{
 				path: 'userType-add', component: UserTypeAddComponent 
+			},
+			{
+				path: 'userType-update/:id', component: UserTypeUpdateComponent 
 			},
 			{
 				path: 'dashboard',

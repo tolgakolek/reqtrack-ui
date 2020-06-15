@@ -10,7 +10,7 @@
     </div>
   </div>
 </div>
-<form class="kt-form" (ngSubmit)="submit()" [formGroup]="formValidation">
+<form class="kt-form" (ngSubmit)="submit(formDirective)" [formGroup]="formValidation" #formDirective="ngForm">
   <div class="kt-portlet__body">
     <div class="kt-form__section kt-form__section--first">
       <div class="form-group kt-form__group row">

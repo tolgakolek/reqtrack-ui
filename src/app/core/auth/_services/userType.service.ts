@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from "rxjs/Rx";
 import { map } from "rxjs/internal/operators";
 import { USERTYPE_PATH } from '../_models/path.model';
-import { HeaderService } from '../_models/header.sevice';
+import { HeaderService } from './header.sevice';
 import { UserType } from '../../model/userType.models';
 
 @Injectable({ providedIn: 'root' })

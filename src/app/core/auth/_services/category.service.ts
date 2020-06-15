@@ -4,7 +4,7 @@ import { Observable } from "rxjs/Rx";
 import { map } from "rxjs/internal/operators";
 import { Category } from '../../model/category.models';
 import { CATEGORY_PATH } from '../_models/path.model';
-import { HeaderService } from '../_models/header.sevice';
+import { HeaderService } from './header.sevice';
 
 @Injectable({ providedIn: 'root' })
 export class CategoryService {

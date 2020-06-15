@@ -34,7 +34,7 @@
       <ng-container matColumnDef="operation">
         <mat-header-cell *matHeaderCellDef mat-sort-header class="text-center"> İşlem </mat-header-cell>
         <mat-cell *matCellDef="let row" class="text-center"> 
-          <button mat-icon-button color="primary" matTooltip="Düzenle">
+          <button  routerLink='/userType-update/{{row.id}}' mat-icon-button color="primary" matTooltip="Düzenle">
             <mat-icon>create</mat-icon>
           </button>&nbsp;
           <button mat-icon-button

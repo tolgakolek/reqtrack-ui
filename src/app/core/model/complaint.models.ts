@@ -9,6 +9,6 @@ export class Complaint{
     location:string;
     userDto:Users;
     category:Category;
-    complaintStatus:ComplaintStatus;
+    complaintStatusDto:ComplaintStatus;
     complaintGalleries?:ComplaintGalleries[];
 }
