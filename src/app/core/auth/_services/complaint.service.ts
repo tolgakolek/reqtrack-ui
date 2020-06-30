@@ -5,6 +5,7 @@ import { map } from "rxjs/internal/operators";
 import { HeaderService } from './header.sevice';
 import { Complaint } from '../../model/complaint.models';
 import { COMPLAINT_PATH } from '../_models/path.model';
+import { ComplaintUpdateModel } from '../../model/complaintUpdate.model';
 
 @Injectable({ providedIn: 'root' })
 export class ComplaintService {
@@ -23,9 +24,14 @@ export class ComplaintService {
             headers: new HttpHeaders(this.headerService.getHeader()),
         });
     }
-
-    update(complaint: Complaint): Observable<any> {
-        return this.http.put(COMPLAINT_PATH, JSON.stringify(complaint),this.requestOptions = {
+    getByDepartmentId(id): Observable<Complaint[]> { 
+        return this.http.get<Complaint[]>(COMPLAINT_PATH+"list/department/" + id,this.requestOptions = {
+        
+            headers: new HttpHeaders(this.headerService.getHeader()),
+        });
+    }
+    update(complaintUpdate: ComplaintUpdateModel): Observable<any> {
+        return this.http.put(COMPLAINT_PATH+"updateStatusAndCategory", JSON.stringify(complaintUpdate),this.requestOptions = {
         
             headers: new HttpHeaders(this.headerService.getHeader()),
         }).pipe(map(

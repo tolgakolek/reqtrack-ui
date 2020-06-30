@@ -5,10 +5,10 @@ import { ComplaintGalleries } from './complaint-galleries.models';
 
 export class Complaint{
     id?:any;
-    description:string;
-    location:string;
-    userDto:Users;
-    category:Category;
+    description?:string;
+    location?:string;
+    userDto?:Users;
+    categoryDto?:Category;
     complaintStatusDto:ComplaintStatus;
     complaintGalleries?:ComplaintGalleries[];
 }

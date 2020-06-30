@@ -133,15 +133,6 @@ export class MenuConfig {
 					state: 'show'
 				},
 				{
-					title: 'UserType-Add',
-					root: true,
-					icon: 'flaticon2-add-1',
-					page: '/userType-add',
-					translate: 'Kullanıcı Rolü Ekle',
-					bullet: 'dot',
-					state: 'show'
-				},
-				{
 					title: 'Category-Add',
 					root: true,
 					icon: 'flaticon2-writing',

@@ -51,7 +51,7 @@ import {
 } from './core/_base/layout';
 // Auth
 import { AuthModule } from './views/pages/auth/auth.module';
-import { AuthService } from './core/auth';
+import { AuthService, AuthGuard } from './core/auth';
 // CRUD
 import { HttpUtilsService, LayoutUtilsService, TypesUtilsService } from './core/_base/crud';
 // Config
@@ -161,7 +161,8 @@ export function hljsLanguages(): HighlightLanguage[] {
 		HttpUtilsService,
 		TypesUtilsService,
 		LayoutUtilsService,
-		StorageService
+		StorageService,
+		AuthGuard
 	],
 	bootstrap: [AppComponent]
 })

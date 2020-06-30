@@ -49,7 +49,7 @@ export class DepartmentUpdateComponent implements OnInit {
       }
       this.departmentService.save(this.department).subscribe(res => {
         if (res) {
-          this.alertMessage="Başarılı Bir Şekilde Tamamlandı."
+          this.alertMessage="Başarılı Bir Şekilde Tamamlandı.";
           this.alertType="success";
           this.alertStatus=true;
           formDirective.resetForm();
@@ -58,7 +58,7 @@ export class DepartmentUpdateComponent implements OnInit {
           setTimeout(()=>this.alertStatus = false, 1000);
         }
         else {
-          this.alertMessage="Kaydedilirken Hata Oluştu."
+          this.alertMessage="Kaydedilirken Hata Oluştu.";
           this.alertType="danger";
         }
       });

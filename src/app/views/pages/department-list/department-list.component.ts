@@ -31,6 +31,7 @@ ngOnInit(): void {
       this.department = data;
       this.dataSource = new MatTableDataSource(this.department);
       this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     });
 }
 

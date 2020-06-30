@@ -11,7 +11,7 @@ import { LightboxModule } from 'ngx-lightbox';
 import { CoreModule } from '../../core/core.module';
 import { MyPageComponent } from './my-page/my-page.component';
 import { UserAddComponent } from './user-add/user-add.component';
-import { MatInputModule, MatAutocompleteModule, MatIconModule, MatSliderModule, MatCheckboxModule, MatFormFieldModule, MatSlideToggleModule, MatButtonModule, MatTableModule, MatPaginatorModule, MatSelectModule, MatMenuModule, MatSortModule, MatProgressSpinnerModule, MatTooltipModule } from '@angular/material';
+import { MatInputModule, MatAutocompleteModule, MatIconModule, MatSliderModule, MatCheckboxModule, MatFormFieldModule, MatSlideToggleModule, MatButtonModule, MatTableModule, MatPaginatorModule, MatSelectModule, MatMenuModule, MatSortModule, MatProgressSpinnerModule, MatTooltipModule, MatSortHeader } from '@angular/material';
 import { CategoryAddComponent } from './category-add/category-add.component';
 import { DepartmentAddComponent } from './department-add/department-add.component';
 import { UserListComponent } from './user-list/user-list.component';
@@ -76,6 +76,7 @@ import { UserUpdateComponent } from './user-update/user-update.component';
 		Ng2TableModule,
 		ReactiveFormsModule,
 		RouterModule,
+		MatSortModule,
 		PaginationModule.forRoot()
 	],
 	providers: []

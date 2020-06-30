@@ -37,8 +37,8 @@
 					<div class="col-lg-6 example-container">
 						<mat-form-field>
 							<mat-label>Departman Seçin</mat-label>
-							<mat-select  formControlName="departmentSelect" [ngModel]="departmentId" [(value)]="selected">
-							  <mat-option *ngFor="let department of departments" [value]="department" (selected)="department.id==departmentId">{{department.name}}</mat-option>
+							<mat-select  formControlName="departmentSelect">
+							  <mat-option *ngFor="let department of departments" [value]="department.id">{{department.name}}</mat-option>
 							</mat-select>
 						  </mat-form-field>
 					</div>

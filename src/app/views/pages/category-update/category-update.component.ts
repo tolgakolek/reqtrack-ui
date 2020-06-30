@@ -19,8 +19,7 @@ export class CategoryUpdateComponent implements OnInit {
   alertMessage: string;
   category: Category;
   categoryId:any;
-  departmentId = 1;
-  departments: Department[] = [];
+  departments: Department[];
   alertStatus = false;
   constructor(
     public formBuilder: FormBuilder,
@@ -42,11 +41,10 @@ export class CategoryUpdateComponent implements OnInit {
     this.categoryService.getById(id).subscribe(res => {
       this.category = res;
       this.categoryId=this.category.id;
-      //this.departmentId=this.category.departmentDto.id;
       this.formValidation.setValue({
         categoryName: this.category.name,
         categoryDescription: this.category.description,
-        departmentSelect: this.category.departmentDto,
+        departmentSelect: this.category.departmentDto.id,
       });
     });
   }
@@ -58,10 +56,9 @@ export class CategoryUpdateComponent implements OnInit {
         id:this.categoryId,
         name: this.formValidation.value.categoryName,
         description: this.formValidation.value.categoryDescription,
-        departmentDto: this.formValidation.value.departmentSelect
+        departmentDto: this.departments.find(department => department.id==this.formValidation.value.departmentSelect)
       }
-      
-      this.categoryService.save(this.category).subscribe(res => {
+      this.categoryService.update(this.category).subscribe(res => {
         if (res) {
           this.alertMessage = "Başarılı Bir Şekilde Tamamlandı."
           this.alertType = "success";

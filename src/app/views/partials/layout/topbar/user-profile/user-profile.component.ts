@@ -7,6 +7,8 @@ import { select, Store } from '@ngrx/store';
 // State
 import { AppState } from '../../../../../core/reducers';
 import { currentUser, Logout, User } from '../../../../../core/auth';
+import { HeaderService } from '../../../../../core/auth/_services/header.sevice';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'kt-user-profile',
@@ -14,19 +16,15 @@ import { currentUser, Logout, User } from '../../../../../core/auth';
 })
 export class UserProfileComponent implements OnInit {
 	// Public properties
-	user$: Observable<User>;
 
-	@Input() avatar: boolean = true;
-	@Input() greeting: boolean = true;
-	@Input() badge: boolean;
-	@Input() icon: boolean;
+	name:any;
 
 	/**
 	 * Component constructor
 	 *
 	 * @param store: Store<AppState>
 	 */
-	constructor(private store: Store<AppState>) {
+	constructor(private store: Store<AppState>,private headerService:HeaderService,private router:Router) {
 	}
 
 	/**
@@ -37,13 +35,14 @@ export class UserProfileComponent implements OnInit {
 	 * On init
 	 */
 	ngOnInit(): void {
-		this.user$ = this.store.pipe(select(currentUser));
+		this.name=localStorage.getItem("user");
 	}
 
 	/**
 	 * Log out
 	 */
 	logout() {
-		this.store.dispatch(new Logout());
+        this.router.navigateByUrl('/auth/login');
+		localStorage.removeItem("token");	
 	}
 }

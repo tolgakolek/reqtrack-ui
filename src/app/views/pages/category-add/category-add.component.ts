@@ -19,7 +19,6 @@ export class CategoryAddComponent implements OnInit {
   category:Category;
   departments:Department[]=[];
   alertStatus=false;
-  
   constructor(public formBuilder: FormBuilder,private categoryService:CategoryService,private departmentService:DepartmentService) { }
 
   ngOnInit() {
@@ -44,7 +43,7 @@ export class CategoryAddComponent implements OnInit {
       
       this.categoryService.save(this.category).subscribe(res => {
         if (res) {
-          this.alertMessage="Başarılı Bir Şekilde Tamamlandı."
+          this.alertMessage="Başarılı Bir Şekilde Tamamlandı.";
           this.alertType="success";
           this.alertStatus=true;
           formDirective.resetForm();
@@ -53,7 +52,7 @@ export class CategoryAddComponent implements OnInit {
         }
         else {
           this.alertStatus=true;
-          this.alertMessage="Kaydedilirken Hata Oluştu."
+          this.alertMessage="Kaydedilirken Hata Oluştu.";
           this.alertType="danger";
         }
       },

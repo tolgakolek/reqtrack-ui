@@ -10,7 +10,7 @@ import { UserType } from '../../../core/model/userType.models';
   styleUrls: ['./userType-list.component.scss']
 })
 export class UserTypeListComponent implements OnInit {
-  displayedColumns = ['id', 'name', 'description','operation'];
+  displayedColumns = ['id', 'name', 'description'];
   dataSource: MatTableDataSource<Category>;
   userType:UserType[] = [];
 
@@ -32,6 +32,7 @@ export class UserTypeListComponent implements OnInit {
       this.dataSource = new MatTableDataSource(this.userType);
       this.changeDetectorRefs.detectChanges();
       this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     });
   }
 

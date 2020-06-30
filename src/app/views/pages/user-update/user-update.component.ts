@@ -19,6 +19,8 @@ export class UserUpdateComponent implements OnInit {
   alertMessage:string;
   userTypes:UserType[]=[];
   user:Users;
+  selected;
+  password:string;
   userId:any;
   alertStatus=false;
   constructor(
@@ -44,22 +46,26 @@ export class UserUpdateComponent implements OnInit {
   }); 
   const id = +this.route.snapshot.paramMap.get('id');
   this.userService.getById(id).subscribe(res => {
-    
     this.user = res;
     this.userId=this.user.id;
+    this.password=this.user.password;
+    this.selected=this.user.userTypeDto.id;
     this.formValidation.setValue({
       userName: this.user.name,
       userSurname: this.user.surname,
       userTcNumber: this.user.tcNumber,
       userPhone: this.user.phone,
       userPassword: "******",
-      userAddress: "null geliyor",
+      userAddress: this.user.address,
       userEmail: this.user.email,
-      userUserTypeSelect: "null geliyor",
+      userUserTypeSelect:this.selected,
     });
   });
   }
-
+  changePassword(){
+    if(this.formValidation.value.userPassword!="******")
+    this.password=this.formValidation.value.userPassword;
+  }
   submit(formDirective: FormGroupDirective) {
     this.submitControl = true;
     if (this.formValidation.status == "VALID") {
@@ -69,15 +75,14 @@ export class UserUpdateComponent implements OnInit {
         surname:this.formValidation.value.userSurname,
         tcNumber:this.formValidation.value.userTcNumber,
         phone:this.formValidation.value.userPhone,
-        password:this.formValidation.value.userPassword,
-        adress:this.formValidation.value.userAddress,
-        email:this.formValidation.value.userEmail,
-        userTypeDto:this.formValidation.value.userUserTypeSelect
+        password:this.password,
+        address:this.formValidation.value.userAddress,
+        email:this.formValidation.value.userEmail
       }
-      this.userService.save(this.user).subscribe(res => {
+      this.userService.update(this.user).subscribe(res => {
         if (res) {
           this.alertStatus=true;
-          this.alertMessage="Başarılı Bir Şekilde Tamamlandı."
+          this.alertMessage="Başarılı Bir Şekilde Tamamlandı.";
           this.alertType="success";
           formDirective.resetForm();
           setTimeout(() => this.router.navigateByUrl("/user-list"), 1000);
@@ -85,7 +90,7 @@ export class UserUpdateComponent implements OnInit {
           setTimeout(()=>this.alertStatus = false, 1000);
         }
         else {
-          this.alertMessage="Kaydedilirken Hata Oluştu."
+          this.alertMessage="Kaydedilirken Hata Oluştu.";
           this.alertType="danger";
         }
       });

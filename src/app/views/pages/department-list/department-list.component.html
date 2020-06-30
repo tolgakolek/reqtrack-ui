@@ -1,3 +1,16 @@
+
+  <div class="kt-portlet__head">
+    <div class="kt-portlet__head-caption">
+      <div class="kt-portlet__head-title">
+        <span class="kt-portlet__head-icon kt-hide">
+          <i class="la la-gear"></i>
+        </span>
+        <h3 class="kt-portlet__head-text">
+          Departman Listele
+        </h3>
+      </div>
+    </div>
+  </div>
 <div class="col-md-2 float-right">
   <mat-form-field appearance="outline" class="example-full-width">
       <mat-label >Arama</mat-label>
@@ -6,7 +19,7 @@
   </mat-form-field>
   </div>
   <div class="table-container">
-    <mat-table class="table table-hover"  [dataSource]="dataSource" matSort>
+    <mat-table #sort="matSort" class="table table-hover"  [dataSource]="dataSource" matSort>
       <!-- ID Column -->
       <ng-container matColumnDef="id">
         <mat-header-cell *matHeaderCellDef mat-sort-header class="text-center"> Id </mat-header-cell>

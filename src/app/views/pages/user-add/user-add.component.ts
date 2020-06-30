@@ -45,21 +45,21 @@ export class UserAddComponent implements OnInit {
         tcNumber:this.formValidation.value.userTcNumber,
         phone:this.formValidation.value.userPhone,
         password:this.formValidation.value.userPassword,
-        adress:this.formValidation.value.userAddress,
+        address:this.formValidation.value.userAddress,
         email:this.formValidation.value.userEmail,
         userTypeDto:this.formValidation.value.userUserTypeSelect
       }
       this.userService.save(this.user).subscribe(res => {
         if (res) {
           this.alertStatus=true;
-          this.alertMessage="Başarılı Bir Şekilde Tamamlandı."
+          this.alertMessage="Başarılı Bir Şekilde Tamamlandı.";
           this.alertType="success";
           formDirective.resetForm();
           setTimeout(()=>this.submitControl = false, 1000);
           setTimeout(()=>this.alertStatus = false, 1000);
         }
         else {
-          this.alertMessage="Kaydedilirken Hata Oluştu."
+          this.alertMessage="Kaydedilirken Hata Oluştu.";
           this.alertType="danger";
         }
       });

@@ -12,7 +12,7 @@ import { UserService } from '../../../core/auth/_services/user.service';
   styleUrls: ['./user-list.component.scss']
 })
 export class UserListComponent {
-  displayedColumns = ['id', 'name', 'surname','phone','email','password','operation'];
+  displayedColumns = ['id','tcnumber','name', 'surname','phone','email','operation'];
   dataSource: MatTableDataSource<Users>;
   user:Users[]=[];
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -35,6 +35,7 @@ export class UserListComponent {
       this.dataSource = new MatTableDataSource(this.user);
       this.changeDetectorRefs.detectChanges();
       this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     }));
     
   }

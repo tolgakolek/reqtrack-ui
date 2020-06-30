@@ -1,41 +1,26 @@
 .mat-table {
-    overflow-x: scroll;
+  overflow-x: scroll;
+}
+
+.mat-cell,
+.mat-header-cell {
+  padding: 0px 10px;
+  vertical-align: middle;
+}
+
+.mat-header-cell{
+  background-color: #eeeeee; 
+}
+
+
+.mat-row:nth-child(n+1){
+  background-color: #eeeeee;
+}
+.mat-row:not(:nth-child(2n+1)){
+  background-color:#ffffff;
+}
+::ng-deep {
+  .mat-form-field-appearance-outline .mat-form-field-outline {
+     background-color: white;
   }
-  
-  .mat-cell,
-  .mat-header-cell {
-    word-wrap: initial;
-    display: table-cell;
-    padding: 0px 10px;
-    width: 18%;
-    line-break: unset;
-    white-space: nowrap;
-    overflow: hidden;
-    vertical-align: middle;
-    border: #e6e3e3;
-    border-style: solid;
-    border-width: 1px;
-  }
-  
-  .mat-header-cell{
-    background-color: #eeeeee; 
-    border: 1px solid #e6e3e3;
-  }
-  
-  .mat-row,
-  .mat-header-row {
-    display: table-row;
-  }
-  
-  .mat-row:nth-child(n+1){
-    background-color: #eeeeee;
-  }
-  .mat-row:not(:nth-child(2n+1)){
-    background-color:#ffffff;
-  }
-  ::ng-deep {
-    .mat-form-field-appearance-outline .mat-form-field-outline {
-       background-color: white;
-    }
-  }
-  
+}

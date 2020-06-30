@@ -3,7 +3,7 @@ import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewEncapsulation, Inp
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 // RxJS
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, BehaviorSubject } from 'rxjs';
 import { finalize, takeUntil, tap } from 'rxjs/operators';
 // Translate
 import { TranslateService } from '@ngx-translate/core';
@@ -149,10 +149,10 @@ export class LoginComponent implements OnInit, OnDestroy {
 			.pipe(
 				tap(user => {
 					if (user) {
-						this.store.dispatch(new Login({authToken: user.token}));	
-						this.headerService.setToken.next(user.token);
-						this.router.navigateByUrl(this.returnUrl); // Main page
-
+						this.store.dispatch(new Login({authToken: user.token}));
+						localStorage.setItem("token", user.token);	
+						localStorage.setItem("user", user.fullName);	
+						this.router.navigateByUrl(this.returnUrl); 
 					} else {
 						this.authNoticeService.setNotice(this.translate.instant('AUTH.VALIDATION.INVALID_LOGIN'), 'danger');
 					}

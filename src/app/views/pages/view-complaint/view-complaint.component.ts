@@ -8,6 +8,9 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Complaint } from '../../../core/model/complaint.models';
 import { ComplaintStatus } from '../../../core/model/complaint-status.models';
 import { ComplaintStatusService } from '../../../core/auth/_services/complaint-status.service';
+import { ComplaintUpdateModel } from '../../../core/model/complaintUpdate.model';
+import { CategoryService } from '../../../core/auth/_services/category.service';
+import { Category } from '../../../core/model/category.models';
 
 @Component({
   selector: 'kt-view-complaint',
@@ -19,18 +22,22 @@ export class ViewComplaintComponent implements OnInit {
   complaint: Complaint;
   lan:any;
   len:any;
+  categories:Category[];
   formValidation: FormGroup;
   submitControl=false;
   alertType:string;
   alertMessage:string;
   complaintStatuses:ComplaintStatus[];
   userTypeStatusId=1;
+  complaintUpdate:ComplaintUpdateModel;
   alertStatus=false;
+  complaintId:any;
   constructor(
     private _lightbox: Lightbox,
     public formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private complaintService: ComplaintService,
+    private categoryService: CategoryService,
     private complaintStatusSevice:ComplaintStatusService,
     private _sanitizer: DomSanitizer,
     private router:Router) { }
@@ -40,16 +47,21 @@ export class ViewComplaintComponent implements OnInit {
     this.formValidation = this.formBuilder.group({
       complaintUserName: ['', [Validators.required]],
       complaintDescription: ['', [Validators.required]],
-      statusSelect:['', [Validators.required]]
+      statusSelect:['', [Validators.required]],
+      categorySelect:['', [Validators.required]]
     });
     this.complaintStatusSevice.getAll().subscribe(res => {
       this.complaintStatuses=res;
     });
+    this.categoryService.getAll().subscribe(res=> {
+      this.categories=res;
+    });
     this.complaintService.getById(id).subscribe(res => {
+      console.log(res);
+      
       this.setImage(res.complaintGalleries);
       this.complaint=res;
-      console.log(this.complaint);
-      
+      this.complaintId=res.id;
       var location=res.location.split(",");
       this.lan=location[0];
       this.len=location[1];
@@ -57,7 +69,8 @@ export class ViewComplaintComponent implements OnInit {
       this.formValidation.setValue({
         complaintUserName: this.complaint.userDto.name + " " +this.complaint.userDto.surname,
         complaintDescription: this.complaint.description,
-        statusSelect: this.complaint.complaintStatusDto,
+        statusSelect: this.complaint.complaintStatusDto.id,
+        categorySelect:this.complaint.categoryDto.id
       });
     });
   }
@@ -90,20 +103,24 @@ export class ViewComplaintComponent implements OnInit {
   submit(formDirective: FormGroupDirective) {
     this.submitControl = true;
     if (this.formValidation.status == "VALID") {
-      this.complaint.complaintStatusDto=this.formValidation.value.statusSelect;
-      this.complaint.complaintGalleries=null;
-      this.complaintService.save(this.complaint).subscribe(res => {
+      this.complaintUpdate={
+        complaintId:this.complaint.id,
+        categoryId:this.formValidation.value.categorySelect,
+        statusId:this.formValidation.value.statusSelect
+      }
+      console.log(this.complaintUpdate);
+      
+      this.complaintService.update(this.complaintUpdate).subscribe(res => {
         if (res) {
           this.alertStatus=true;
-          this.alertMessage="Başarılı Bir Şekilde Tamamlandı."
+          this.alertMessage="Başarılı Bir Şekilde Tamamlandı.";
           this.alertType="success";
-          formDirective.resetForm();
           setTimeout(() => this.router.navigateByUrl("/complaint-list"), 1000);
           setTimeout(()=>this.submitControl = false, 1000);
           setTimeout(()=>this.alertStatus = false, 1000);
         }
         else {
-          this.alertMessage="Kaydedilirken Hata Oluştu."
+          this.alertMessage="Kaydedilirken Hata Oluştu.";
           this.alertType="danger";
         }
       });

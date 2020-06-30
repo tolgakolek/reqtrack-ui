@@ -31,6 +31,7 @@ export class CategoryListComponent implements OnInit {
       this.dataSource = new MatTableDataSource(this.category);
       this.changeDetectorRefs.detectChanges();
       this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     });
   }
 

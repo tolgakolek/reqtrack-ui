@@ -1,5 +1,6 @@
 export class LoginUser{
     username?: string;
-    password?:string;
+    tcNumber?:string;
     token?: string;
+    fullName?:string;
 }

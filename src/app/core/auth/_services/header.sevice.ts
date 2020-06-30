@@ -5,18 +5,12 @@ import { BehaviorSubject } from 'rxjs/Rx';
 
 @Injectable({ providedIn: 'root' })
 export class HeaderService {
-
     tokens:any;
-    public setToken = new BehaviorSubject("a");
     headerDict :any;
     requestOptions :any;
-
     public getHeader(){
-        this.setToken.subscribe({
-            next: (v) => this.tokens=v
-        });
         this.headerDict= {
-            'Authorization':'Bearer ' + this.tokens,
+            'Authorization':'Bearer ' + localStorage.getItem("token"),
             'Content-Type': 'application/json',
             'Accept': 'application/json',
             'charset': 'utf-8',

@@ -8,6 +8,6 @@ export class Users{
     tcNumber:string;
     email:string;
     password:string;
-    adress:string;
+    address:string;
     userTypeDto?:UserType;
 }
